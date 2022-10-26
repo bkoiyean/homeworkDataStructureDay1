@@ -20,7 +20,7 @@ public class SquareRoot {
 		else {
 			return result(input,min,mid);	
 		}
-			
+//		Complexity: O(logn) time
 	}
 
 }
