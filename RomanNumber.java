@@ -1,47 +1,45 @@
+//	Complexity: O(n) time
 
 public class RomanNumber {
 	public static void main(String[] args) {
-		String romanNumber = "II";
+		String romanNumber = "MCMXCIV";
+
 		int result = 0;
-		while (romanNumber!="") {
-			int i = 0;
-			if (romanNumber.length()>1) {
-				String letter1 = romanNumber.substring(i, i+1);
-				String letter2 = romanNumber.substring(i+1, i+2);
-				if (valueOfLetter(letter1)>=valueOfLetter(letter2)) {
-					result +=valueOfLetter(letter1);
-					romanNumber = romanNumber.substring(i+1);
-				}
-				else {
-					result +=valueOfLetter(letter2)-valueOfLetter(letter1);
-					romanNumber = romanNumber.substring(i+2);
-				}
+		int lastValue = 1001;
+
+		while (romanNumber != "") {
+
+			char currentLetter = romanNumber.charAt(0);
+
+			if (valueOfLetter(currentLetter) <= lastValue) {
+				result += valueOfLetter(currentLetter);
+			} else {
+				result += valueOfLetter(currentLetter) - 2 * lastValue;
 			}
-			else {
-				result +=valueOfLetter(romanNumber);
-				romanNumber = romanNumber.substring(i+1);
-			}
+
+			lastValue = valueOfLetter(currentLetter);
+			romanNumber = romanNumber.substring(1);
 		}
+
 		System.out.println(result);
-		
-//		Complexity: O(n) time
 
 	}
-	public static int valueOfLetter(String letter) {
+
+	public static int valueOfLetter(char letter) {
 		switch (letter) {
-		case "I":
+		case 'I':
 			return 1;
-		case "V":
+		case 'V':
 			return 5;
-		case "X":
+		case 'X':
 			return 10;
-		case "L":
+		case 'L':
 			return 50;
-		case "C":
+		case 'C':
 			return 100;
-		case "D":
+		case 'D':
 			return 500;
-		case "M":
+		case 'M':
 			return 1000;
 		default:
 			return 0;
