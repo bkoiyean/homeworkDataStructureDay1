@@ -1,31 +1,27 @@
-//	Complexity: O(n^n) time
+//		Complexity: O(n x log n) time
+
+package Day1;
+
+import java.util.Arrays;
 
 public class LongestSameString {
 	public static void main(String[] args) {
-		String[] input = { "1floamento flo", "1flourist 1floa", "1flower 1floa" };
+		String[] input = { "1floamento flou", "1flourist flo", "1flouwer" };
 
-		String firstElement = input[0];
+		Arrays.sort(input);
+
+		String firstString = input[0];
+		String lastString = input[input.length - 1];
 		String result = "";
-		int countElementHasSameString = input.length;
-		int countSameCharacterOfString = 0;
-		
-		while (countElementHasSameString == input.length) {
-			
-			countElementHasSameString = 0;
-			
-			countSameCharacterOfString++;
-			
-			String currentSameString = firstElement.substring(0, countSameCharacterOfString);
-			
-			result = currentSameString.substring(0, countSameCharacterOfString - 1);
-			
-			for (String i : input) {
-				if (i.substring(0, countSameCharacterOfString).equals(currentSameString)) {
-					countElementHasSameString++;
-				}
-			}
 
+		for (int i = 0; i < firstString.length(); i++) {
+			if (firstString.charAt(i) == (lastString.charAt(i))) {
+				result += firstString.charAt(i);
+			} else {
+				break;
+			}
 		}
+
 		System.out.println("The longest same string is: " + result);
 	}
 
